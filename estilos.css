@@ -7,7 +7,7 @@
     display: flex;
     /* flex-wrap: wrap; */
     justify-content: center; 
-    background-color: burlywood;
+    background-color: #00068b;
     padding: 10px;
     border: 2px solid black;
 }
@@ -15,11 +15,14 @@ input{
     width: 80%;
     padding: 10px;
     margin: 20px;
-    font-size: 15px;
+    font-size: 40px;
     font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+    border-radius: 20px;
 }
 button{
-    background-color: gainsboro;
+    background-color: #bababa;
+    color: black;
     width: 100px;
     padding: 20px;
     margin: 5px;
@@ -27,4 +30,5 @@ button{
     font-size: 20px;
     border: 2px solid black;
     cursor: pointer;
+    border-radius: 50px;
 }
