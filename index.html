@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+
+<body>
+    <div id="contenido">
+        <div id="calculadora">
+            <div id="botones">
+                <input type="text" id="pantalla" readonly>
+                <button onclick="botonPulsado(this)">7</button>
+                <button onclick="botonPulsado(this)">8</button>
+                <button onclick="botonPulsado(this)">9</button>
+                <button onclick="operacion(this)">+</button>
+                <button onclick="botonPulsado(this)">4</button>
+                <button onclick="botonPulsado(this)">5</button>
+                <button onclick="botonPulsado(this)">6</button>
+                <button onclick="operacion(this)"> - </button>
+                <button onclick="botonPulsado(this)">1</button>
+                <button onclick="botonPulsado(this)">2</button>
+                <button onclick="botonPulsado(this)">3</button>
+                <button onclick="operacion(this)">/</button>
+                <button onclick="botonPulsado(this)">0</button>
+                <button onclick="botonPulsado(this)">.</button>
+                <button onclick="igual()"> = </button>
+                <button onclick="operacion(this)">*</button>
+                <button onclick="borrar()">Borrar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

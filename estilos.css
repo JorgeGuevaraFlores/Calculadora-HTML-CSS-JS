@@ -1,0 +1,30 @@
+#contenido{
+    padding-top: 50px;
+    width: 500px;
+    margin: 0 auto;
+}
+#calculadora{
+    display: flex;
+    /* flex-wrap: wrap; */
+    justify-content: center; 
+    background-color: burlywood;
+    padding: 10px;
+    border: 2px solid black;
+}
+input{
+    width: 80%;
+    padding: 10px;
+    margin: 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+button{
+    background-color: gainsboro;
+    width: 100px;
+    padding: 20px;
+    margin: 5px;
+    text-align: center;
+    font-size: 20px;
+    border: 2px solid black;
+    cursor: pointer;
+}
