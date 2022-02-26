@@ -7,7 +7,7 @@ var punto = 1;
 var numero1 = null,
   numero2 = null,
   operador = null;
-let checkIgual=false;
+let checkIgual = false;
 
 document.addEventListener("keydown", function (event) {
   // alert("Tecla presionada: "+event.keyCode)
@@ -40,26 +40,26 @@ const operacion = (op) => {
   checkIgual = false;
 };
 
-const operacionTeclas = (op) =>{
+const operacionTeclas = (op) => {
   numero1 = pantalla.value;
   operador = op;
   pantalla.value = "";
   console.log(numero1 + " " + operador);
   punto = 1;
   txtPantalla = 1;
-}
+};
 const igual = () => {
-  if(checkIgual){
-    numero1=pantalla.value;
+  if (checkIgual) {
+    numero1 = pantalla.value;
   } else {
     numero2 = pantalla.value;
   }
   let operacion = numero1 + " " + operador + " " + numero2;
   let resultado = eval(operacion);
   pantalla.value = resultado;
-  checkIgual=true;
-  console.log(numero1)
-  console.log(numero2)
+  checkIgual = true;
+  console.log(numero1);
+  console.log(numero2);
   // numero1 = null;
   // numero2 = null;
   // operador = null;
@@ -74,4 +74,5 @@ const borrar = () => {
   operador = null;
   punto = 1;
   txtPantalla = 1;
+  checkIgual = false;
 };
