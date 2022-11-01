@@ -1,6 +1,5 @@
 let botones = document.getElementsByTagName("button");
 let pantalla = document.getElementById("pantalla");
-const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 pantalla.value = "";
 var txtPantalla = 1;
 var punto = 1;
@@ -9,30 +8,41 @@ var numero1 = null,
   operador = null;
 let checkIgual = false;
 
-document.addEventListener("keydown", function (event) {
-  // alert("Tecla presionada: "+event.keyCode)
-  teclaPulsada(event);
+const botonPulsado = (boton) => {
+  let valor = boton.innerText;
+  validar(valor);
+  // console.log(valor);
+};
+
+document.addEventListener("keyup", function (event) {
+  alert("Tecla presionada: " + event.keyCode);
+  let tecla = String(event.keyCode);
+  teclaPulsada(tecla);
 });
 
-const botonPulsado = (boton) => {
-  if (txtPantalla == 1 && punto == 1 && boton.innerText == ".") {
+const teclaPulsada = (key) => {};
+
+const validar = (boton) => {
+  if (txtPantalla == 1 && punto == 1 && boton == ".") {
     pantalla.value += "0.";
     punto = 0;
     txtPantalla = 0;
-  } else if (punto == 1 && boton.innerText == ".") {
-    pantalla.value += boton.innerText;
+  } else if (punto == 1 && boton == ".") {
+    pantalla.value += boton;
     punto = 0;
   }
 
-  if (boton.innerText != ".") {
-    pantalla.value += boton.innerText;
+  if (boton != ".") {
+    pantalla.value += boton;
     txtPantalla = 0;
   }
 };
 
 const operacion = (op) => {
+  if (typeof op != "string") {
+    operador = op.innerText;
+  }
   numero1 = pantalla.value;
-  operador = op.innerText;
   pantalla.value = "";
   console.log(numero1 + " " + operador);
   punto = 1;
@@ -48,6 +58,7 @@ const operacionTeclas = (op) => {
   punto = 1;
   txtPantalla = 1;
 };
+
 const igual = () => {
   if (checkIgual) {
     numero1 = pantalla.value;
