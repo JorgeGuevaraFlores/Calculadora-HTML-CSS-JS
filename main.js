@@ -1,86 +1,56 @@
-let botones = document.getElementsByTagName("button");
 let pantalla = document.getElementById("pantalla");
-pantalla.value = "";
-var txtPantalla = 1;
-var punto = 1;
-var numero1 = null,
-  numero2 = null,
-  operador = null;
-let checkIgual = false;
+pantalla.value = "0";
+let colocarPunto = true;
+let accion = false;
+let valoresOperacion = [];
+var parte1 = null;
 
 const botonPulsado = (boton) => {
-  let valor = boton.innerText;
-  validar(valor);
-  // console.log(valor);
+  let numeroPulsado = boton.innerText;
+  pintarPantalla(numeroPulsado);
 };
 
-document.addEventListener("keyup", function (event) {
-  alert("Tecla presionada: " + event.keyCode);
-  let tecla = String(event.keyCode);
-  teclaPulsada(tecla);
-});
-
-const teclaPulsada = (key) => {};
-
-const validar = (boton) => {
-  if (txtPantalla == 1 && punto == 1 && boton == ".") {
-    pantalla.value += "0.";
-    punto = 0;
-    txtPantalla = 0;
-  } else if (punto == 1 && boton == ".") {
-    pantalla.value += boton;
-    punto = 0;
+const pintarPantalla = (numero) => {
+  if (pantalla.value === "0" && numero === ".") {
+    pantalla.value = "0.";
+    colocarPunto = false;
   }
 
-  if (boton != ".") {
-    pantalla.value += boton;
-    txtPantalla = 0;
+  if ((numero != "." && pantalla.value === "0") || accion) {
+    pantalla.value = numero;
+    accion = false;
+  } else {
+    if (numero === "." && colocarPunto) {
+      pantalla.value += numero;
+      colocarPunto = false;
+    } else if (numero != ".") {
+      pantalla.value += numero;
+    }
   }
 };
 
-const operacion = (op) => {
-  if (typeof op != "string") {
-    operador = op.innerText;
-  }
-  numero1 = pantalla.value;
-  pantalla.value = "";
-  console.log(numero1 + " " + operador);
-  punto = 1;
-  txtPantalla = 1;
-  checkIgual = false;
-};
-
-const operacionTeclas = (op) => {
-  numero1 = pantalla.value;
-  operador = op;
-  pantalla.value = "";
-  console.log(numero1 + " " + operador);
-  punto = 1;
-  txtPantalla = 1;
+const operacion = (operador) => {
+  let numero1 = pantalla.value;
+  parte1 = numero1 + operador.innerText;
+  accion = true;
+  colocarPunto = true;
+  console.log(parte1);
 };
 
 const igual = () => {
-  if (checkIgual) {
-    numero1 = pantalla.value;
-  } else {
-    numero2 = pantalla.value;
+  if (parte1 != null) {
+    let numero2 = pantalla.value;
+    parte1 += numero2;
+    let resultado = eval(parte1);
+    console.log(resultado, parte1);
+    pantalla.value = resultado;
   }
-  let operacion = numero1 + " " + operador + " " + numero2;
-  let resultado = eval(operacion);
-  pantalla.value = resultado;
-  checkIgual = true;
-  console.log(numero1);
-  console.log(numero2);
-  console.log(operacion);
-  console.log(resultado);
 };
 
 const borrar = () => {
-  pantalla.value = "";
-  numero1 = null;
-  numero2 = null;
-  operador = null;
-  punto = 1;
-  txtPantalla = 1;
-  checkIgual = false;
+  pantalla.value = "0";
+  colocarPunto = true;
+  accion = false;
+  valoresOperacion = [];
+  parte1 = null;
 };
