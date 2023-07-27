@@ -2,8 +2,13 @@ let pantalla = document.getElementById("pantalla");
 pantalla.value = "0";
 let colocarPunto = true;
 let accion = false;
-let valoresOperacion = [];
-var parte1 = null;
+var numero1 = 0,
+  numero2 = 0,
+  parte1 = 0,
+  clickIgual = 0,
+  operacionRealizar = null,
+  resultadoOperacion = 0,
+  auxiliar = 0;
 
 const botonPulsado = (boton) => {
   let numeroPulsado = boton.innerText;
@@ -11,12 +16,16 @@ const botonPulsado = (boton) => {
 };
 
 const pintarPantalla = (numero) => {
-  if (pantalla.value === "0" && numero === ".") {
+  if (
+    (pantalla.value === "0" && numero === ".") ||
+    (numero === "." && accion)
+  ) {
     pantalla.value = "0.";
     colocarPunto = false;
+    accion = false;
   }
 
-  if ((numero != "." && pantalla.value === "0") || accion) {
+  if ((numero != "." && pantalla.value === "0") || (numero != "." && accion)) {
     pantalla.value = numero;
     accion = false;
   } else {
@@ -30,27 +39,27 @@ const pintarPantalla = (numero) => {
 };
 
 const operacion = (operador) => {
-  let numero1 = pantalla.value;
+  numero1 = pantalla.value;
+  operacionRealizar = operador.innerText;
   parte1 = numero1 + operador.innerText;
   accion = true;
-  colocarPunto = true;
+  clickIgual = 0;
   console.log(parte1);
 };
 
 const igual = () => {
-  if (parte1 != null) {
-    let numero2 = pantalla.value;
-    parte1 += numero2;
-    let resultado = eval(parte1);
-    console.log(resultado, parte1);
-    pantalla.value = resultado;
+  if (clickIgual > 0) {
+    numero1 = pantalla.value;
+    parte1 = numero1 + operacionRealizar + numero2;
+    resultadoOperacion = eval(parte1);
+    pantalla.value = resultadoOperacion;
+  } else {
+    numero2 = pantalla.value;
+    let completa = parte1 + numero2;
+    resultadoOperacion = eval(completa);
+    pantalla.value = resultadoOperacion;
+    clickIgual++;
   }
-};
 
-const borrar = () => {
-  pantalla.value = "0";
-  colocarPunto = true;
-  accion = false;
-  valoresOperacion = [];
-  parte1 = null;
+  console.log(numero1, numero2, resultadoOperacion);
 };
